@@ -5,6 +5,9 @@ import numpy as np
 a = int(input("Ingrese un entero positivo a: "))
 b = int(input("Ingrese un entero positivo b: "))
 
+c = a
+d = b
+
 #Se verifica que los valores ingresados sean positivos
 if a <= 0 or b <= 0:
    print("Los valores ingresados tienen que ser positivos")
@@ -39,8 +42,9 @@ while b != 0:  # Mientras b no sea 0 se ejecuta el ciclo
       [1,-q]
    ])
 
-   m= np.dot(Q1,m)
+   m= Q1@m
 
 x = m[0,0]
 y = m[0,1]
 print(f"Los coeficientes de Bezout son x = {x}, y = {y}")
+print(f"Entonces {c}({x}) + {d}({y}) = {c * x + d * y}")
