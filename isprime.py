@@ -1,39 +1,50 @@
 import math
+#Ejercicio 1
+# Función para generar números primos hasta un límite usando la criba de Eratóstenes
+def Primos_N(n):
+    if n < 2:
+        return
 
-def criba_eratostenes(limite):
-    es_primo = [True] * (limite + 1)
-    es_primo[0] = es_primo[1] = False  # 0 y 1 no son primos
-    
-    for i in range(2, int(math.sqrt(limite)) + 1):
-        if es_primo[i]:
-            for j in range(i * i, limite + 1, i):
-                es_primo[j] = False
-    
-    return [i for i, primo in enumerate(es_primo) if primo]
+    prime = [True] * (n + 1)
+    prime[0] = prime[1] = False
 
+    for p in range(2, int(math.sqrt(n)) + 1):
+        if prime[p]:
+            # Marcar los múltiplos de p como no primos, comenzando desde p^2.
+            for i in range(p * p, n + 1, p):
+                prime[i] = False
 
-def isprime(n):
-    if n <= 1:
-        return f"El número {n} no es primo."
+    # Imprimir los números primos
+    primes = [p for p in range(2, n + 1) if prime[p]]
+    print(*primes)
     
-    # Generar todos los primos hasta √n
-    primos = criba_eratostenes(int(math.sqrt(n)))
-    
-    
-    for primo in primos:
-        if n % primo == 0:
-            return f"El número {n} no es primo, pues lo divide {primo}."
-    
-    return f"El número {n} es primo."
+#Ejercicio 2
+# Función para determinar si un número n es primo utilizando la criba
+def is_prime(N):
+    if N < 2:
+        return False
 
+    # Inicializamos una lista de booleanos para los números desde 0 hasta N.
+    prime = [True] * (N + 1)
+    prime[0] = prime[1] = False
 
+    # Criba de Eratóstenes
+    for p in range(2, int(math.sqrt(N)) + 1):
+        if prime[p]:
+            for i in range(p * p, N + 1, p):
+                prime[i] = False
+
+    # El valor de prime[N] nos indicará si N es primo
+    return prime[N]
+
+# Función principal para probar con varios números
 def main():
     while True:
         try:
             n = int(input("Ingrese un entero positivo n (o -1 para salir): "))
             if n == -1:
                 break
-            print(isprime(n))
+            print(is_prime(n))
         except ValueError:
             print("Por favor, ingrese un número entero válido.")
 
