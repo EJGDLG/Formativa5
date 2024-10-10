@@ -39,14 +39,28 @@ def is_prime(N):
 
 # Función principal para probar con varios números
 def main():
-    while True:
+    A = 0
+   
+    A = int(input("ingrese Número de ejecución deseado: 1. lista de primos entre 0 y N | 2. Si N es primo o no"))
+    if A == 1:
         try:
             n = int(input("Ingrese un entero positivo n (o -1 para salir): "))
             if n == -1:
-                break
+                exit
+            print(Primos_N(n))
+        except ValueError:
+            print("Por favor, ingrese un número entero válido.")
+    if A == 2:
+        try:
+            n = int(input("Ingrese un entero positivo n (o -1 para salir): "))
+            if n == -1:
+                exit
             print(is_prime(n))
         except ValueError:
             print("Por favor, ingrese un número entero válido.")
+    else:
+        exit
 
 # Ejecutar las pruebas
 main()
+
